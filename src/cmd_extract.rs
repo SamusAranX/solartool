@@ -1,5 +1,6 @@
 use std::fs::create_dir_all;
 use std::path::{Path, PathBuf};
+
 use libheif_rs::{CompressionFormat, EncoderQuality, HeifContext, LibHeif};
 
 pub fn extract(_arg_write_metadata: bool, arg_out_dir: Option<PathBuf>, arg_input: PathBuf) -> Result<(), String> {
@@ -39,10 +40,12 @@ pub fn extract(_arg_write_metadata: bool, arg_out_dir: Option<PathBuf>, arg_inpu
 		println!("Extracting image {} to {}…", i + 1, image_path.to_str().unwrap());
 
 		let color_space = handle.preferred_decoding_colorspace().expect("Can't get color space");
-		let color_profile = handle.color_profile_raw().expect("Can't get color profile");
-
 		let mut image = lib_heif.decode(handle, color_space, None).expect("Can't decode image");
-		image.set_color_profile_raw(&color_profile).expect("Can't set color profile");
+
+		let color_profile = handle.color_profile_raw();
+		if color_profile.is_some() {
+			image.set_color_profile_raw(&color_profile.unwrap()).expect("Can't set color profile");
+		}
 
 		let mut context = HeifContext::new().unwrap();
 		context.encode_image(&image, &mut encoder, None).expect("Can't encode image");
