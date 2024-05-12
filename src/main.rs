@@ -18,7 +18,7 @@ const BUILD_DATE: &str = env!("BUILD_DATE");
 const CLAP_VERSION: &str = formatcp!("{GIT_VERSION} [{GIT_BRANCH}, {GIT_HASH}, {BUILD_DATE}]");
 
 #[derive(Parser, Debug)]
-#[command(version = CLAP_VERSION, about = "Derives an image with alpha channel from two alpha-less images")]
+#[command(version = CLAP_VERSION, about = "A commandline tool for working with \"dynamic wallpaper\" HEIC images")]
 struct Args {
 	#[command(subcommand)]
 	command: Commands,
