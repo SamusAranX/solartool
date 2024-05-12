@@ -1,1 +1,2 @@
-pub mod solar;
+pub mod utils;
+pub mod structs;
