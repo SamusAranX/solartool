@@ -11,7 +11,7 @@ clap = { version = "4.5.4", features = ["derive"] }
 const_format = "0.2.32"
 libheif-rs = "1.0.1"
 chrono = "0.4.38"
-roxmltree = "0.19.0"
+roxmltree = "0.20.0"
 serde = { version = "1.0.201", features = ["derive"] }
 base64 = "0.22.1"
 plist = "1.6.1"
