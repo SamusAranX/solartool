@@ -58,7 +58,7 @@ pub fn extract(arg_write_metadata: bool, arg_overwrite_images: bool,
 		return Ok(());
 	}
 
-	create_dir_all(out_dir.clone()).expect("Can't create output directory");
+	create_dir_all(&out_dir).expect("Can't create output directory");
 
 	// Extract metadata
 
